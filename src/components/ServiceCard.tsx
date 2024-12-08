@@ -1,4 +1,5 @@
 import { Clock } from "lucide-react";
+import { BookingModal } from "./BookingModal";
 
 interface ServiceCardProps {
   title: string;
@@ -22,9 +23,12 @@ export const ServiceCard = ({ title, description, price, duration, isPremium = f
         <Clock className="w-4 h-4" />
         <span>{duration} min</span>
       </div>
-      <button className={isPremium ? "premium-button mt-4" : "book-button mt-4"}>
-        {isPremium ? "Torne-se Premium" : "Agendar Horário"}
-      </button>
+      <BookingModal 
+        serviceName={title}
+        duration={duration}
+        price={price}
+        isPremium={isPremium}
+      />
     </div>
   );
 };

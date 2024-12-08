@@ -123,3 +123,32 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
+
+/* Booking Modal Styles */
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: hsl(var(--primary));
+  --rdp-background-color: hsl(var(--card));
+  margin: 0;
+}
+
+.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: hsl(var(--accent) / 0.1);
+}
+
+.rdp-day_selected {
+  background-color: hsl(var(--primary)) !important;
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.rdp-day_selected:hover {
+  background-color: hsl(var(--primary) / 0.8) !important;
+}
+
+.time-slot {
+  @apply px-4 py-2 rounded-md border border-border/50 hover:border-primary/50 transition-colors;
+}
+
+.time-slot.selected {
+  @apply border-primary bg-primary/10;
+}
