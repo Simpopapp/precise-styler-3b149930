@@ -81,9 +81,23 @@ const specialTreatments = [
   }
 ];
 
+const premiumPlan = {
+  title: "Sr. Oliveira PREMIUM",
+  description: "Acesso exclusivo a todos os serviços com benefícios especiais",
+  price: 199.90,
+  duration: 0,
+};
+
 export const ServicesSection = () => {
   return (
-    <div className="space-y-12">
+    <div className="space-y-16">
+      <section>
+        <h2 className="premium-title">✨ Sr. Oliveira PREMIUM</h2>
+        <div className="max-w-2xl mx-auto">
+          <ServiceCard {...premiumPlan} isPremium={true} />
+        </div>
+      </section>
+
       <section>
         <h2 className="section-title">✂️ Serviços Básicos</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

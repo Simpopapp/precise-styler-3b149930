@@ -5,13 +5,14 @@ interface ServiceCardProps {
   description?: string;
   price: number;
   duration: number;
+  isPremium?: boolean;
 }
 
-export const ServiceCard = ({ title, description, price, duration }: ServiceCardProps) => {
+export const ServiceCard = ({ title, description, price, duration, isPremium = false }: ServiceCardProps) => {
   return (
-    <div className="service-card">
+    <div className={isPremium ? "premium-card" : "service-card"}>
       <div className="flex justify-between items-start mb-2">
-        <h3 className="font-medium">{title}</h3>
+        <h3 className={`font-medium ${isPremium ? "text-primary" : ""}`}>{title}</h3>
         <span className="service-price">R$ {price.toFixed(2)}</span>
       </div>
       {description && (
@@ -21,7 +22,9 @@ export const ServiceCard = ({ title, description, price, duration }: ServiceCard
         <Clock className="w-4 h-4" />
         <span>{duration} min</span>
       </div>
-      <button className="book-button mt-4">Agendar Horário</button>
+      <button className={isPremium ? "premium-button mt-4" : "book-button mt-4"}>
+        {isPremium ? "Torne-se Premium" : "Agendar Horário"}
+      </button>
     </div>
   );
 };

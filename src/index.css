@@ -10,19 +10,19 @@
     --card-foreground: 0 0% 98%;
     --popover: 222 47% 11%;
     --popover-foreground: 0 0% 98%;
-    --primary: 47 77% 60%;
+    --primary: 36 100% 50%;  /* More vibrant gold */
     --primary-foreground: 0 0% 0%;
     --secondary: 217 33% 17%;
     --secondary-foreground: 0 0% 98%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 47 77% 60%;
+    --accent: 36 100% 50%;  /* Matching gold accent */
     --accent-foreground: 0 0% 0%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 217 33% 17%;
     --input: 217 33% 17%;
-    --ring: 47 77% 60%;
+    --ring: 36 100% 50%;  /* Gold ring */
     --radius: 0.5rem;
   }
 }
@@ -33,7 +33,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image: linear-gradient(to bottom, rgba(26,31,44,0.95), rgba(26,31,44,0.95)), url('/lovable-uploads/79167ec4-b9f8-418a-8289-bccadc1c9e2e.png');
+    background-image: linear-gradient(to bottom, rgba(26,31,44,0.95), rgba(26,31,44,0.95)), url('/lovable-uploads/68acc69b-789a-4f6a-9f7c-143d7726967f.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -42,14 +42,63 @@
 
 .service-card {
   @apply bg-card/60 backdrop-blur-sm border border-border/10 rounded-lg p-6 hover:bg-card/80 transition-all duration-300;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary)));
+  transition: 0.5s;
+}
+
+.service-card:hover::before {
+  left: 100%;
 }
 
 .book-button {
-  @apply w-full bg-primary text-primary-foreground font-medium py-2 rounded-md hover:bg-primary/90 transition-all duration-300;
+  @apply w-full bg-primary text-primary-foreground font-medium py-2 rounded-md transition-all duration-300;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.book-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: translateX(-100%);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.book-button:hover::before {
+  transform: translateX(100%);
 }
 
 .section-title {
-  @apply text-2xl font-semibold mb-6 text-foreground;
+  @apply text-3xl font-bold mb-8 text-foreground text-center;
+  text-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+.premium-title {
+  @apply text-4xl font-black mb-8 text-center bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, #fff 50%, hsl(var(--primary)) 100%);
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
 .service-time {
@@ -58,4 +107,19 @@
 
 .service-price {
   @apply text-primary font-semibold;
+}
+
+.premium-card {
+  @apply service-card;
+  background: linear-gradient(145deg, rgba(0,0,0,0.8) 0%, rgba(51,51,51,0.8) 100%);
+  border: 1px solid hsl(var(--primary));
+  box-shadow: 0 0 20px rgba(255,215,0,0.1);
+}
+
+.premium-button {
+  @apply book-button;
+  background: linear-gradient(45deg, hsl(var(--primary)), #ffd700);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
