@@ -33,7 +33,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-image: linear-gradient(to bottom, rgba(26,31,44,0.85), rgba(26,31,44,0.75)), url('/lovable-uploads/68acc69b-789a-4f6a-9f7c-143d7726967f.png');
+    background-image: linear-gradient(to bottom, rgba(26,31,44,0.85), rgba(26,31,44,0.85)), url('/lovable-uploads/68acc69b-789a-4f6a-9f7c-143d7726967f.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
