@@ -28,7 +28,6 @@ export const BookingModal = ({ serviceName, duration, price, isPremium = false }
       return;
     }
 
-    // Here you would typically make an API call to save the booking
     console.log("Booking:", {
       service: serviceName,
       date: selectedDate,
@@ -62,14 +61,14 @@ export const BookingModal = ({ serviceName, duration, price, isPremium = false }
           {isPremium ? "Torne-se Premium" : "Agendar Horário"}
         </button>
       </SheetTrigger>
-      <SheetContent className="w-[90%] sm:max-w-[540px]">
+      <SheetContent className="w-[90%] sm:max-w-[540px] overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="text-center text-xl font-bold">
             {serviceName}
           </SheetTitle>
         </SheetHeader>
         
-        <div className="mt-6 space-y-6">
+        <div className="mt-6 space-y-6 pb-20">
           <div>
             <h3 className="font-medium mb-2">Selecione a data</h3>
             <Calendar
@@ -77,14 +76,14 @@ export const BookingModal = ({ serviceName, duration, price, isPremium = false }
               selected={selectedDate}
               onSelect={setSelectedDate}
               disabled={(date) => date < startOfToday() || date > addDays(new Date(), 30)}
-              className="rounded-md border"
+              className="rounded-md border mx-auto"
             />
           </div>
 
           {selectedDate && (
             <div>
               <h3 className="font-medium mb-2">Horários disponíveis</h3>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-2 max-h-[200px] overflow-y-auto p-2">
                 {generateTimeSlots(selectedDate).map((time) => (
                   <Button
                     key={time}
@@ -110,7 +109,9 @@ export const BookingModal = ({ serviceName, duration, price, isPremium = false }
               <span className="text-primary font-semibold">R$ {price.toFixed(2)}</span>
             </div>
           </div>
+        </div>
 
+        <div className="absolute bottom-0 left-0 right-0 p-6 bg-background border-t">
           <Button 
             className="w-full"
             onClick={handleBooking}
