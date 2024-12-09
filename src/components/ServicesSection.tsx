@@ -1,4 +1,5 @@
 import { ServiceCard } from "./ServiceCard";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const basicServices = [
   {
@@ -89,6 +90,9 @@ const premiumPlan = {
 };
 
 export const ServicesSection = () => {
+  const combosAnimation = useScrollAnimation();
+  const specialsAnimation = useScrollAnimation();
+
   return (
     <div className="space-y-16">
       <section>
@@ -107,7 +111,14 @@ export const ServicesSection = () => {
         </div>
       </section>
 
-      <section>
+      <section
+        ref={combosAnimation.ref}
+        className={`transition-all duration-1000 transform ${
+          combosAnimation.isVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-10'
+        }`}
+      >
         <h2 className="section-title">⭐ Combos</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {comboServices.map((service) => (
@@ -116,7 +127,14 @@ export const ServicesSection = () => {
         </div>
       </section>
 
-      <section>
+      <section
+        ref={specialsAnimation.ref}
+        className={`transition-all duration-1000 transform ${
+          specialsAnimation.isVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-10'
+        }`}
+      >
         <h2 className="section-title">💈 Tratamentos Especiais</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {specialTreatments.map((service) => (
